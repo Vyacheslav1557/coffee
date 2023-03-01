@@ -3,9 +3,9 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget
 from PyQt5 import uic
 from DMS import DatabaseManagementSystem
 from PyQt5.QtGui import QTextDocument
+from UI import mainForm
 
-DB_NAME = "coffee.sqlite"
-UI_NAME = "main.ui"
+DB_NAME = "data/coffee.sqlite"
 TITLE = "Coffee"
 
 
@@ -13,10 +13,9 @@ def raise_not_implemented_error() -> None:
     raise NotImplementedError
 
 
-class MainWindow(QMainWindow):
+class MainWindow(mainForm.Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi(UI_NAME, self)
         self.dms = DatabaseManagementSystem(DB_NAME)
         self.current_coffee_cup_id = None
         ids = self.dms.get_ids()
